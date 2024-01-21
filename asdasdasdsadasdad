@@ -1,0 +1,67 @@
+import SwiftUI
+
+// MARK: - Models
+struct Track: Identifiable {
+    let id: UUID = UUID()
+    var name: String
+    var articles: [Article]
+}
+
+struct Article: Identifiable {
+    let id: UUID = UUID()
+    var title: String
+    var authors: [String]
+    // Add any other properties you need
+}
+
+// MARK: - Views
+
+// Track View to display a single track with its articles
+struct TrackView: View {
+    var track: Track
+
+    var body: some View {
+        List(track.articles) { article in
+            ArticleRow(article: article)
+        }
+        .navigationTitle(track.name)
+    }
+}
+
+// Article Row View to display a single article in a list
+struct ArticleRow: View {
+    var article: Article
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(article.title)
+                .font(.headline)
+            Text(article.authors.joined(separator: ", "))
+                .font(.subheadline)
+        }
+    }
+}
+
+// Main Content View with navigation
+struct ContentView: View {
+    @State private var tracks: [Track] = [] // This will be populated with your data
+
+    var body: some View {
+        NavigationView {
+            List(tracks) { track in
+                NavigationLink(destination: TrackView(track: track)) {
+                    Text(track.name)
+                }
+            }
+            .navigationBarTitle("Conference Tracks")
+        }
+    }
+}
+
+// MARK: - Preview
+// Only needed for SwiftUI previews in Xcode
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
