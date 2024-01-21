@@ -1,3 +1,12 @@
+import SwiftUI
+struct SomeView: View {
+    @State private var someStatefulValue = false
+
+    var body: some View {
+       
+    }
+}
+
 struct ContentView: View {
     @State private var tracks: [Track] = []
 
