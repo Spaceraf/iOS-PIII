@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct Article: Identifiable {
     let id = UUID()
     var title: String
