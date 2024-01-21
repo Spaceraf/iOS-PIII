@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct ArticleView: View {
     var article: Article
 
