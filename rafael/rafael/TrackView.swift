@@ -1,3 +1,5 @@
+import SwiftUI
+
 struct TrackView: View {
     var track: Track
 
